@@ -6,8 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,10 +29,6 @@ public class ClassService {
 
     public Optional<ClassEntity> getClassById(Long id) {
         return classRepository.findById(id);
-    }
-
-    public void deleteClass(Long id) {
-        classRepository.deleteById(id);
     }
 }
 

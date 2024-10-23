@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
+import java.util.Date;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -38,7 +40,12 @@ public class ClassesControllerTest {
 
     @Test
     public void testClassesCreate_Success() throws Exception {
-        ClassEntity classEntity = new ClassEntity(1L, "Yoga Class", new java.util.Date(), new java.util.Date(), 30);
+        ClassEntity classEntity = ClassEntity.builder()
+                .className("Yoga Class")
+                .startDate(new Date())
+                .endDate(new Date())
+                .capacity(20)
+                .build();
         when(classService.saveOrUpdateClass(any(ClassDTO.class))).thenReturn(classEntity);
 
         ClassDTO classDTO = new ClassDTO("Yoga Class", new java.util.Date(), new java.util.Date(), 30);
@@ -65,7 +72,12 @@ public class ClassesControllerTest {
 
     @Test
     public void testGetClasses_Success() throws Exception {
-        ClassEntity classEntity = new ClassEntity(1L, "Yoga Class", new java.util.Date(), new java.util.Date(), 30);
+        ClassEntity classEntity = ClassEntity.builder()
+                .className("Yoga Class")
+                .startDate(new Date())
+                .endDate(new Date())
+                .capacity(20)
+                .build();
         Page<ClassEntity> paginatedClasses = new PageImpl<>(Collections.singletonList(classEntity), PageRequest.of(0, 5), 1);
 
         when(classService.getAllClasses(any(Pageable.class))).thenReturn(paginatedClasses);

@@ -1,4 +1,4 @@
-package com.abcfitness.glofox.coaching;
+package com.abcfitness.glofox.user;
 
 import com.abcfitness.glofox.booking.BookingEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -6,35 +6,32 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "classes")
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ClassEntity {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "class_name", nullable = false)
-    private String className;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    @Column(name = "start_date", nullable = false)
-    private Date startDate;
+    @Column(name = "last_name")
+    private String lastName;
 
-    @Column(name = "end_date", nullable = false)
-    private Date endDate;
+    @Column(name = "email", unique = true)
+    private String email;
 
-    @Column(name = "capacity", nullable = false)
-    private int capacity;
-
-    @OneToMany(mappedBy = "classEntity")
+    // One user can have many bookings
+    @OneToMany(mappedBy = "userEntity")
     @Builder.Default
     @JsonManagedReference
     private List<BookingEntity> bookings = new ArrayList<>();
