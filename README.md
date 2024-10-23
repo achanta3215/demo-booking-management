@@ -5,6 +5,10 @@
 ```shell
 ./mvnw spring-boot:run
 ```
+- Run test cases
+```shell
+ ./mvnw test
+```
 
 ## Tech Stack
 
