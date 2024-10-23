@@ -1,13 +1,22 @@
 # Glofox Booking Management App
 
 ## Setup
-- Install dependencies and Run the application on Port 8080 in embedded Tomcat sever
+- Install Maven on local system
 ```shell
-./mvnw spring-boot:run
+./mvnw spring-boot:run -DskipTests
 ```
-- Run test cases
+- Verify Test Cases
 ```shell
  ./mvnw test
+```
+- (OR) Docker environment
+```shell
+# Build the Docker image
+docker build -t demo-booking-management .
+
+# Run the Docker container
+docker run -p 8080:8080 demo-booking-management
+
 ```
 
 ## Tech Stack
